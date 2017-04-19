@@ -30,7 +30,7 @@ int main() {
             dictionary[curr_number] = line_part;
         curr_number++;
     }
-    showDict(dictionary);
+//    showDict(dictionary);
     
     // encode algorithm
     unsigned long last_index = dictionary.size() + 1;
@@ -50,8 +50,54 @@ int main() {
         if (i == n - 1)
             encode += to_string(findIn(dictionary, p));
     }
-    showDict(dictionary);
+//    showDict(dictionary);
     cout << encode << endl;
+    
+    // decode algorithm
+    dictionary = {};
+    curr_number = 1;
+    p = ""; c = ""; p_plus_c = "";
+    unsigned long pw, cw;
+    string str_pw = "", str_cw = "";
+    string decode = "";
+    
+    // fill the dictionary by non-repeated letters in s
+    for (unsigned long i = 0; i < n; ++i)
+    {
+        line_part = s[i];
+        if (!findIn(dictionary, line_part))
+            dictionary[curr_number] = line_part;
+        curr_number++;
+    }
+//    showDict(dictionary);
+    
+    curr_number = dictionary.size() + 1;
+    n = encode.length();
+    for (unsigned long i = 0; i < n; ++i)
+    {
+        cw = encode[i] - '0';
+        if (i == 0)
+        {
+            str_cw = dictionary[cw];
+            decode += str_cw;
+            str_pw = str_cw;
+            continue;
+        }
+        if (dictionary.find(cw) != dictionary.end())
+        {
+            str_cw = dictionary[cw];
+            decode += str_cw;
+            p = str_pw;
+            c = str_cw;
+            p_plus_c = p + c;
+            dictionary[curr_number] = p_plus_c;
+            curr_number++;
+            pw = cw;
+            str_pw = str_cw;
+        }
+    }
+    showDict(dictionary);
+    cout << decode << endl;
 }
 
 unsigned long findIn (map<unsigned long, string> dict, string value)
