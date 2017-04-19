@@ -6,23 +6,19 @@
 //  Copyright © 2017 Kushka Misha & Yazenok Misha. All rights reserved.
 //
 
-#include <iostream>
-#include <string>
-#include <map>
-using namespace std;
-
-unsigned long findIn (map<unsigned long, string>, string); // check is value in map
-void showDict (map<unsigned long, string>); // show map on the screen
+#include "functions.hpp"
 
 int main() {
-    map<unsigned long, string> dictionary;
     string s = "wabbawabba";
+    
+    map<unsigned long, string> dictionary;
     string p = "", c = "", p_plus_c = "";
-    unsigned long n = s.length(),
-                  curr_number = 1;
-    string line_part, encode = "";
+    unsigned long n = s.length();
+    string encode = "";
     
     // fill the dictionary by non-repeated letters in s
+    string line_part;
+    unsigned long curr_number = 1;
     for (unsigned long i = 0; i < n; ++i)
     {
         line_part = s[i];
@@ -30,6 +26,7 @@ int main() {
             dictionary[curr_number] = line_part;
         curr_number++;
     }
+    
 //    showDict(dictionary);
     
     // encode algorithm
@@ -96,20 +93,6 @@ int main() {
             str_pw = str_cw;
         }
     }
-    showDict(dictionary);
+//    showDict(dictionary);
     cout << decode << endl;
-}
-
-unsigned long findIn (map<unsigned long, string> dict, string value)
-{
-    for (int i = 0; i < dict.size(); ++i)
-        if (dict[i] == value)
-            return i;
-    return NULL;
-}
-
-void showDict (map<unsigned long, string> dict)
-{
-    for (int i = 0; i < dict.size(); ++i)
-        cout << "dict[" << i + 1 << "] = " << dict[i + 1] << endl;
 }
