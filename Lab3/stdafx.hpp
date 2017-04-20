@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <cmath>
 using namespace std;
 
 #endif /* stdafx_hpp */

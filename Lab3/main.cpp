@@ -10,18 +10,16 @@
 #include "globals.hpp"
 
 int main() {
-    string s = "wabbawabba";
+//    string s = "wabbawabba";
+    string s = "mishamashapasha";
     unsigned long n = s.length();
     Encode encoded;
     
     // encode algorithm
-    encoding(s, encoded);
-    cout << "Encoded.encoded_text: " << encoded.encoded_text << endl;
-    cout << "Encoded dict:" << endl;
-    showDict(encoded.dict);
+    encoding(s, encoded, n);
+    cout << "Encoded text: " << encoded.encoded_text << endl;
     
     // decode algorithm
     string decode = decoding (encoded, n);
-    cout << "Decoded text:" << endl;
-    cout << decode << endl;
+    cout << "Decoded text: " << decode << endl;
 }

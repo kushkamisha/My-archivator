@@ -14,7 +14,9 @@
 
 unsigned long findIn (map<unsigned long, string>, string); // check is value in map
 void showDict (map<unsigned long, string>); // show map on the screen
-void encoding (string, Encode&);
+string toBinary (unsigned long, int);
+unsigned long toDecimal (unsigned long);
+void encoding (string, Encode&, unsigned long);
 string decoding (Encode, unsigned long);
 
 #endif /* functions_hpp */
