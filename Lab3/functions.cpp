@@ -107,27 +107,37 @@ void encoding (string in, Encode &encode, unsigned long n)
 
 string decoding (Encode encoded, unsigned long n)
 {
-    unsigned long i = 0, curr_number = encoded.dict.size() + 1, pw, cw;
-    string p = "", c = "", p_plus_c = "", str_pw = "", str_cw = "", decode = "", line_part = "";
+    string p = "", c = "", p_plus_c = "", str_pw = "", str_cw = "", decode = "", line_part;
     
+    unsigned long curr_number = encoded.dict.size() + 1, pw, cw;
+    
+    // change bit string to decimal string
+    n = encoded.encoded_text.length();
     int bits = 2;
+    unsigned long i = 0, iteration_numb = 1;
+    vector<unsigned long> decimal_arr;
     while (bits <= log2(curr_number))
         bits++;
-    
-    n = encoded.encoded_text.length();
-    unsigned long iteration_numb = 1;
     while (i + bits <= n)
     {
-        if (bits <= log2(iteration_numb + curr_number - 2))
+        if (bits <= log2(iteration_numb + curr_number - 1))
             bits++;
-        cout << "Bits: " << bits << endl;
-        cw = toDecimal(atoll(encoded.encoded_text.substr(i, bits).c_str()));
-        cout << encoded.encoded_text.substr(i, bits) << " " << atoll(encoded.encoded_text.substr(i, bits).c_str()) << " " << cw << endl;
+        decimal_arr.push_back(toDecimal(atoll(encoded.encoded_text.substr(i, bits).c_str())));
+//        cout << toDecimal(atoll(encoded.encoded_text.substr(i, bits).c_str())) << endl;
         i += bits;
-        if (i == bits)
+        iteration_numb++;
+    }
+    for (unsigned long i = 0; i < decimal_arr.size(); ++i)
+        cout << decimal_arr[i] << " ";
+    cout << endl;
+    
+    n = decimal_arr.size();
+    for (unsigned long i = 0; i < n; ++i)
+    {
+        cw = decimal_arr[i];//encoded.encoded_text[i] - '0';
+        if (i == 0)
         {
             str_cw = encoded.dict[cw];
-            cout << "str_cw: " << str_cw << endl;
             decode += str_cw;
             str_pw = str_cw;
             continue;
@@ -144,8 +154,7 @@ string decoding (Encode encoded, unsigned long n)
             pw = cw;
             str_pw = str_cw;
         }
-        iteration_numb++;
     }
-    showDict(encoded.dict);
+    //    showDict(dictionary);
     return decode;
 }

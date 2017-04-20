@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 #endif /* stdafx_hpp */
