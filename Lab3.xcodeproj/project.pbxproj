@@ -29,6 +29,7 @@
 		A896AB881EA7F12400FE4B02 /* functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = functions.cpp; sourceTree = "<group>"; };
 		A896AB891EA7F12400FE4B02 /* functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = functions.hpp; sourceTree = "<group>"; };
 		A896AB8C1EA7F23E00FE4B02 /* stdafx.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stdafx.hpp; sourceTree = "<group>"; };
+		A8C84BFE1EA887C9001607BE /* globals.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = globals.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				A896AB811EA7B37000FE4B02 /* main.cpp */,
+				A8C84BFE1EA887C9001607BE /* globals.hpp */,
 				A896AB881EA7F12400FE4B02 /* functions.cpp */,
 				A896AB891EA7F12400FE4B02 /* functions.hpp */,
 				A896AB8C1EA7F23E00FE4B02 /* stdafx.hpp */,
@@ -254,6 +256,7 @@
 				A896AB871EA7B37000FE4B02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

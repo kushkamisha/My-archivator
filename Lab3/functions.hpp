@@ -10,8 +10,11 @@
 #define functions_hpp
 
 #include "stdafx.hpp"
+#include "globals.hpp"
 
 unsigned long findIn (map<unsigned long, string>, string); // check is value in map
 void showDict (map<unsigned long, string>); // show map on the screen
+void encoding (string, Encode&);
+string decoding (Encode, unsigned long);
 
 #endif /* functions_hpp */
