@@ -95,11 +95,11 @@ void encoding (string in, Encode &encode, unsigned long n)
         else
         {
             dictionary[last_index] = p_plus_c;
-            cout << "i = " << i << endl;
-            cout << "c = " << c << endl;
-            cout << "p = " << p << endl;
-            showDict(dictionary);
-            cout << endl;
+//            cout << "i = " << i << endl;
+//            cout << "c = " << c << endl;
+//            cout << "p = " << p << endl;
+////            showDict(dictionary);
+//            cout << endl;
             last_index++;
             encode.encoded_text += /*to_string(findIn(dictionary, p));*/toBinary(findIn(dictionary, p), bits);
 //            cout << findIn(dictionary, p) << " " << toBinary(findIn(dictionary, p), bits) << " " << bits << endl;
@@ -108,7 +108,7 @@ void encoding (string in, Encode &encode, unsigned long n)
         if (i == n - 1)
             encode.encoded_text += /*to_string(findIn(dictionary, p));*/toBinary(findIn(dictionary, p), bits);
     }
-        showDict(dictionary);
+//        showDict(dictionary);
 }
 
 string decoding (Encode encoded, unsigned long n)
@@ -148,6 +148,7 @@ string decoding (Encode encoded, unsigned long n)
             str_cw = encoded.dict[cw];
             decode += str_cw;
             pw = cw;
+            str_pw = str_cw;
             cout << endl;
             continue;
         }
@@ -161,12 +162,13 @@ string decoding (Encode encoded, unsigned long n)
             c = str_cw[0];
             p_plus_c = p + c;
             encoded.dict[curr_number] = p_plus_c;
-            pw = cw;
+//            pw = cw;
             curr_number++;
         }
         else
         {
             cout << "Second" << endl;
+            str_pw = encoded.dict[pw];
             p = str_pw;
             c = str_pw[0];
             p_plus_c = p + c;
@@ -174,13 +176,16 @@ string decoding (Encode encoded, unsigned long n)
             encoded.dict[curr_number] = p_plus_c;
             curr_number++;
         }
-        cout << "cw = " << cw << endl;
-        cout << "pw = " << pw << endl;
-        cout << "p = " << p << endl;
-        cout << "  c = " << c << endl;
-        showDict(encoded.dict);
+//        cout << "cw = " << cw << endl;
+//        cout << "pw = " << pw << endl;
+//        cout << "str_pw = " << str_pw << endl;
+//        cout << "p = " << p << endl;
+//        cout << "  c = " << c << endl;
+//        showDict(encoded.dict);
         cout << endl;
+        pw = cw;
+//        str_pw = str_cw;
     }
-    showDict(encoded.dict);
+//    showDict(encoded.dict);
     return decode;
 }
