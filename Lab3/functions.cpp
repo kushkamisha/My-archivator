@@ -87,6 +87,7 @@ void encoding (string in, Encode &encode, unsigned long n)
     {
         if (bits <= log2(last_index))
             bits++;
+        
         c = in[i];
         p_plus_c = p + c;
         if (findIn(dictionary, p_plus_c))
@@ -130,6 +131,7 @@ string decoding (Encode encoded, unsigned long n)
     for (unsigned long i = 0; i < decimal_arr.size(); ++i)
         cout << decimal_arr[i] << " ";
     cout << endl;
+//    showDict(encoded.dict);
     
     n = decimal_arr.size();
     for (unsigned long i = 0; i < n; ++i)
@@ -139,22 +141,27 @@ string decoding (Encode encoded, unsigned long n)
         {
             str_cw = encoded.dict[cw];
             decode += str_cw;
-            str_pw = str_cw;
+            pw = cw;
             continue;
         }
-        if (encoded.dict.find(cw) != encoded.dict.end())
+        else
         {
-            str_cw = encoded.dict[cw];
-            decode += str_cw;
-            p = str_pw;
-            c = str_cw;
-            p_plus_c = p + c;
-            encoded.dict[curr_number] = p_plus_c;
-            curr_number++;
-            pw = cw;
-            str_pw = str_cw;
+            if (encoded.dict.find(cw) != encoded.dict.end())
+            {
+                str_cw = encoded.dict[cw];
+                str_pw = encoded.dict[pw];
+                decode += str_cw;
+                p = str_pw;
+                c = str_cw[0];
+                cout << "p = " << p << "  c = " << c << endl;
+                p_plus_c = p + c;
+                encoded.dict[curr_number] = p_plus_c;
+                pw = cw;
+//                str_pw = str_cw;
+                curr_number++;
+            }
         }
     }
-    //    showDict(dictionary);
+    showDict(encoded.dict);
     return decode;
 }
