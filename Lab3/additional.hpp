@@ -11,6 +11,6 @@
 
 #include "stdafx.hpp"
 
-string readFile(string);
+string readFile (string);
 
 #endif /* additional_hpp */

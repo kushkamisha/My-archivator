@@ -8,8 +8,8 @@
 
 #include "additional.hpp"
 
-string readFile(string filename) {
-    ifstream f(filename);
+string readFile (string filename) {
+    ifstream f (filename);
     string line = "";
     string result = "";
     
