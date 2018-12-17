@@ -20,7 +20,8 @@ unsigned long findIn (map<unsigned long, string> dict, string value)
 void showDict (map<unsigned long, string> dict)
 {
     for (int i = 0; i < dict.size(); ++i)
-        cout << "dict[" << i + 1 << "] = " << dict[i + 1] << endl;
+        cout << "  d[" << i + 1 << "] = " << dict[i + 1] << endl;
+    cout << endl;
 }
 
 string toBinary (unsigned long numb, int n)
@@ -57,7 +58,7 @@ unsigned long toDecimal (unsigned long num)
     return dec;
 }
 
-void encoding (string in, Encode &encode, unsigned long n)
+map<unsigned long, string> encoding (string in, Encode &encode, unsigned long n)
 {
     map<unsigned long, string> dictionary;
     string p = "", c = "", p_plus_c = "";
@@ -109,6 +110,8 @@ void encoding (string in, Encode &encode, unsigned long n)
             encode.encoded_text += /*to_string(findIn(dictionary, p));*/toBinary(findIn(dictionary, p), bits);
     }
 //        showDict(dictionary);
+    
+    return dictionary;
 }
 
 string decoding (Encode encoded, unsigned long n)
@@ -133,13 +136,13 @@ string decoding (Encode encoded, unsigned long n)
         i += bits;
         iteration_numb++;
     }
-    for (unsigned long i = 0; i < decimal_arr.size(); ++i)
-        cout << decimal_arr[i] << " ";
-    cout << endl;
+//    for (unsigned long i = 0; i < decimal_arr.size(); ++i)
+//        cout << decimal_arr[i] << " ";
+//    cout << endl;
 //    showDict(encoded.dict);
     
     n = decimal_arr.size();
-    cout << "n = " << n << endl;
+//    cout << "n = " << n << endl;
     for (unsigned long i = 0; i < n; ++i)
     {
         cw = decimal_arr[i];
@@ -149,12 +152,12 @@ string decoding (Encode encoded, unsigned long n)
             decode += str_cw;
             pw = cw;
             str_pw = str_cw;
-            cout << endl;
+//            cout << endl;
             continue;
         }
         if (encoded.dict.find(cw) != encoded.dict.end())
         {
-            cout << "Inside" << endl;
+//            cout << "Inside" << endl;
             str_cw = encoded.dict[cw];
             str_pw = encoded.dict[pw];
             decode += str_cw;
@@ -167,7 +170,7 @@ string decoding (Encode encoded, unsigned long n)
         }
         else
         {
-            cout << "Second" << endl;
+//            cout << "Second" << endl;
             str_pw = encoded.dict[pw];
             p = str_pw;
             c = str_pw[0];
@@ -182,7 +185,7 @@ string decoding (Encode encoded, unsigned long n)
 //        cout << "p = " << p << endl;
 //        cout << "  c = " << c << endl;
 //        showDict(encoded.dict);
-        cout << endl;
+//        cout << endl;
         pw = cw;
 //        str_pw = str_cw;
     }
