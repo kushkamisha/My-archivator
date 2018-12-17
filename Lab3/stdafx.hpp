@@ -14,6 +14,7 @@
 #include <map>
 #include <cmath>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 #endif /* stdafx_hpp */

@@ -37,9 +37,9 @@ string toBinary (unsigned long numb, int n)
         numb = divided;
     }
     answer.insert(0, to_string (divided));
-    int m = answer.length();
+    unsigned long m = answer.length();
     if (m < n)
-        for (int i = 0; i < n - m; ++i)
+        for (unsigned long i = 0; i < n - m; ++i)
             answer.insert(0, "0");
     return answer;
 }
@@ -96,20 +96,13 @@ map<unsigned long, string> encoding (string in, Encode &encode, unsigned long n)
         else
         {
             dictionary[last_index] = p_plus_c;
-//            cout << "i = " << i << endl;
-//            cout << "c = " << c << endl;
-//            cout << "p = " << p << endl;
-////            showDict(dictionary);
-//            cout << endl;
             last_index++;
             encode.encoded_text += /*to_string(findIn(dictionary, p));*/toBinary(findIn(dictionary, p), bits);
-//            cout << findIn(dictionary, p) << " " << toBinary(findIn(dictionary, p), bits) << " " << bits << endl;
             p = c;
         }
         if (i == n - 1)
-            encode.encoded_text += /*to_string(findIn(dictionary, p));*/toBinary(findIn(dictionary, p), bits);
+            encode.encoded_text += toBinary(findIn(dictionary, p), bits);
     }
-//        showDict(dictionary);
     
     return dictionary;
 }
@@ -132,17 +125,11 @@ string decoding (Encode encoded, unsigned long n)
         if (bits <= log2(iteration_numb + curr_number - 1))
             bits++;
         decimal_arr.push_back(toDecimal(atoll(encoded.encoded_text.substr(i, bits).c_str())));
-//        cout << toDecimal(atoll(encoded.encoded_text.substr(i, bits).c_str())) << endl;
         i += bits;
         iteration_numb++;
     }
-//    for (unsigned long i = 0; i < decimal_arr.size(); ++i)
-//        cout << decimal_arr[i] << " ";
-//    cout << endl;
-//    showDict(encoded.dict);
     
     n = decimal_arr.size();
-//    cout << "n = " << n << endl;
     for (unsigned long i = 0; i < n; ++i)
     {
         cw = decimal_arr[i];
@@ -152,12 +139,10 @@ string decoding (Encode encoded, unsigned long n)
             decode += str_cw;
             pw = cw;
             str_pw = str_cw;
-//            cout << endl;
             continue;
         }
         if (encoded.dict.find(cw) != encoded.dict.end())
         {
-//            cout << "Inside" << endl;
             str_cw = encoded.dict[cw];
             str_pw = encoded.dict[pw];
             decode += str_cw;
@@ -165,12 +150,10 @@ string decoding (Encode encoded, unsigned long n)
             c = str_cw[0];
             p_plus_c = p + c;
             encoded.dict[curr_number] = p_plus_c;
-//            pw = cw;
             curr_number++;
         }
         else
         {
-//            cout << "Second" << endl;
             str_pw = encoded.dict[pw];
             p = str_pw;
             c = str_pw[0];
@@ -179,16 +162,7 @@ string decoding (Encode encoded, unsigned long n)
             encoded.dict[curr_number] = p_plus_c;
             curr_number++;
         }
-//        cout << "cw = " << cw << endl;
-//        cout << "pw = " << pw << endl;
-//        cout << "str_pw = " << str_pw << endl;
-//        cout << "p = " << p << endl;
-//        cout << "  c = " << c << endl;
-//        showDict(encoded.dict);
-//        cout << endl;
         pw = cw;
-//        str_pw = str_cw;
     }
-//    showDict(encoded.dict);
     return decode;
 }
